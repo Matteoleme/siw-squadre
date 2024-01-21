@@ -55,6 +55,7 @@ public class SquadreController {
 		Squadra squadra = this.squadraRepository.findById(idSquadra).get();
 		Presidente presidente = this.presidenteRepository.findById(idPresidente).get();
 		squadra.setPresidente(presidente);
+		this.squadraRepository.save(squadra);
 		model.addAttribute("squadra", squadra);
 		return "squadra.html";
 	}
