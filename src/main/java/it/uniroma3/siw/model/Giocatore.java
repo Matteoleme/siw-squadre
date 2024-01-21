@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Giocatore {
@@ -15,9 +16,12 @@ public class Giocatore {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@NotBlank
 	private String nome;
+	@NotBlank
 	private String cognome;
 	private String luogoNascita;
+	@NotBlank
 	private String ruolo;
 	private LocalDate dataDiNascita;
 	

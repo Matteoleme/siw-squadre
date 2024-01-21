@@ -3,16 +3,19 @@ package it.uniroma3.siw.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.siw.controller.validator.SquadraValidator;
 import it.uniroma3.siw.model.Presidente;
 import it.uniroma3.siw.model.Squadra;
 import it.uniroma3.siw.repository.GiocatoreRepository;
 import it.uniroma3.siw.repository.PresidenteRepository;
 import it.uniroma3.siw.repository.SquadraRepository;
+import jakarta.validation.Valid;
 
 @Controller
 public class SquadreController {
@@ -23,6 +26,8 @@ public class SquadreController {
 	GiocatoreRepository giocatoreRepository;
 	@Autowired
 	PresidenteRepository presidenteRepository;
+	@Autowired
+	SquadraValidator squadraValidator;
 	
 	// da togliere da qui!!!
 	@GetMapping("/admin/index")
@@ -37,8 +42,10 @@ public class SquadreController {
 	}
 	
 	@PostMapping("/admin/aggiungiSquadra")
-	public String newSquadra(@ModelAttribute("squadra") Squadra squadra, Model model) {
-		if (!squadraRepository.existsByNomeAndAnnoFondazione(squadra.getNome(), squadra.getAnnoFondazione())) {
+	public String newSquadra(@Valid @ModelAttribute("squadra") Squadra squadra, BindingResult bindingResult, Model model) {
+		// qui oltre a validare i dati in base alle annotazioni controlla anche i duplicati
+		this.squadraValidator.validate(squadra, bindingResult);
+		if (!bindingResult.hasErrors()) {
 			this.squadraRepository.save(squadra);
 			model.addAttribute("squadra", squadra);				//crea questa view
 			// mi da la lista di tutti i presidenti che non hanno già una squadra

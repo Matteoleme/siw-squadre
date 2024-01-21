@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
 
 @Entity
 public class Utente {
@@ -14,6 +15,7 @@ public class Utente {
 
 	private String nome;
 	private String cognome;
+	@Email
 	private String email;
 	
 	public Long getId() {

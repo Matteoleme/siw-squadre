@@ -10,14 +10,20 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Squadra {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;	
+	private Long id;
+	@NotBlank
 	private String nome;
+	@NotBlank
+	@Min(1880)
+	@Max(2023)
 	private Integer annoFondazione;
 	private String indirizzoSede;
 	
@@ -77,7 +83,7 @@ public class Squadra {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(annoFondazione, nome);
+		return Objects.hash(nome);
 	}
 
 	@Override
@@ -89,9 +95,9 @@ public class Squadra {
 		if (getClass() != obj.getClass())
 			return false;
 		Squadra other = (Squadra) obj;
-		return Objects.equals(annoFondazione, other.annoFondazione) && Objects.equals(nome, other.nome);
+		return Objects.equals(nome, other.nome);
 	}
 
-	
+		
 	
 }

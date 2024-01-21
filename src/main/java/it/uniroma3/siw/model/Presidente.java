@@ -8,6 +8,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Presidente {
@@ -15,10 +18,16 @@ public class Presidente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@NotBlank
 	private String nome;
+	@NotBlank
 	private String cognome;
+	@NotBlank
+	@Size(min = 15, max = 15)
 	private String cf;
 	private String luogoNascita;
+	@NotBlank
+	@Past
 	private LocalDate dataDiNascita;
 	
 	@OneToOne(mappedBy = "presidente")
