@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Elenco Squadre - Campionato</title>
+    <title>Aggiungi squadra</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -24,19 +24,22 @@
         </div>
     </nav>
 
-    <h1 class="main-title">Formulario Squadra</h1>
+    <h1 class="main-title">Aggiungi nuova squadra</h1>
 
 	<h2 > Aggiungi i dati di una nuova squadra</h2>
     <form th:action="@{'/admin/aggiungiSquadra'}" method="post" th:object="${squadra}"}>
         <label for="nome">Nome Squadra:</label>
         <input type="text" th:field="${squadra.nome}" required>
+        <span th:if="${#fields.hasErrors('squadra.nome')}" th:errors="${squadra.nome}" th:style="'color:red'"></span>
         
         <label for="anno_fondazione">Anno Fondazione:</label>
         <input type="number" th:field="${squadra.annoFondazione}" required>
-
+		<span th:if="${#fields.hasErrors('squadra.annoFondazione')}" th:errors="${squadra.annoFondazione}" th:style="'color:red'"></span>
+		
         <label for="indirizzo_sede">Indirizzo Sede:</label>
         <input type="text" th:field="${squadra.indirizzoSede}" required>
-
+		<span th:if="${#fields.hasErrors('squadra.indirizzoSede')}" th:errors="${squadra.indirizzoSede}" th:style="'color:red'"></span>
+		
         <input type="submit" value="Aggiungi Squadra">
     </form>
 

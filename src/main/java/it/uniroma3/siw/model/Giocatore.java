@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
 
 @Entity
 public class Giocatore {
@@ -23,6 +24,7 @@ public class Giocatore {
 	private String luogoNascita;
 	@NotBlank
 	private String ruolo;
+	@Past
 	private LocalDate dataDiNascita;
 	
 	@ManyToOne
