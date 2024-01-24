@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Login</title>
+	<!-- Favicon-->
+	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+	<!-- Core theme CSS (includes Bootstrap)-->
+	<link href="/css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container px-5">
+			<a class="navbar-brand" href="/">Serie A magement</a>
+		</div>
+	</nav>
+
+	<h1 class="main-title">Autenticati</h1>
+	
+	<form th:action="@{/login}" method="POST">
+		<div>
+			<span>Username:</span>
+			<span><input name="username" type="text" required /></span>
+		</div>
+		<div>
+			<span>Password:</span>
+			<span><input name="password" type="password" required /></span>
+		</div>
+		<div>
+			<span th:if="${param.error != null}">Username o password errati</span>
+		</div>
+		<div>
+			<span><button type="submit">Login</button></span>
+		</div>
+	</form>
+	<div>
+		<a th:href="@{/registrati}" th:text="Registrati">Registrati</a>
+	</div>
+	</form>
+
+
+</body>
+
+</html>
