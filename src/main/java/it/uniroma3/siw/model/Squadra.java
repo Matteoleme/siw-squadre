@@ -21,7 +21,6 @@ public class Squadra {
 	private Long id;
 	@NotBlank
 	private String nome;
-	@NotBlank
 	@Min(1880)
 	@Max(2023)
 	private Integer annoFondazione;

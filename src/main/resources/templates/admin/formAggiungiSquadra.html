@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container px-5">
-            <a class="navbar-brand" href="#!">Serie A magement</a>
+            <a class="navbar-brand" href="/">Serie A magement</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -30,15 +30,15 @@
     <form th:action="@{'/admin/aggiungiSquadra'}" method="post" th:object="${squadra}"}>
         <label for="nome">Nome Squadra:</label>
         <input type="text" th:field="${squadra.nome}" required>
-        <span th:if="${#fields.hasErrors('squadra.nome')}" th:errors="${squadra.nome}" th:style="'color:red'"></span>
+        <span th:if="${#fields.hasErrors('nome')}" th:errors="${squadra.duplicate}" th:style="'color:red'"></span>
         
         <label for="anno_fondazione">Anno Fondazione:</label>
         <input type="number" th:field="${squadra.annoFondazione}" required>
-		<span th:if="${#fields.hasErrors('squadra.annoFondazione')}" th:errors="${squadra.annoFondazione}" th:style="'color:red'"></span>
+		<span th:if="${#fields.hasErrors('annoFondazione')}" th:errors="${squadra.annoFondazione}" th:style="'color:red'"></span>
 		
         <label for="indirizzo_sede">Indirizzo Sede:</label>
         <input type="text" th:field="${squadra.indirizzoSede}" required>
-		<span th:if="${#fields.hasErrors('squadra.indirizzoSede')}" th:errors="${squadra.indirizzoSede}" th:style="'color:red'"></span>
+		<span th:if="${#fields.hasErrors('indirizzoSede')}" th:errors="${squadra.indirizzoSede}" th:style="'color:red'"></span>
 		
         <input type="submit" value="Aggiungi Squadra">
     </form>

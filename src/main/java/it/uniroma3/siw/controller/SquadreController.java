@@ -50,14 +50,14 @@ public class SquadreController {
 			model.addAttribute("squadra", squadra);				//crea questa view
 			// mi da la lista di tutti i presidenti che non hanno già una squadra
 			model.addAttribute("presidenti", this.presidenteRepository.findPresidentiLiberi());
-			return "admin/aggiungiPresidente.html";
+			return "admin/aggiungiPresidenteASquadra.html";
 		} else {
 			model.addAttribute("messaggioErrore", "Questa squadra esiste già");
 			return "admin/formAggiungiSquadra.html";
 		}
 	}
 	
-	@GetMapping("/admin/aggiungiPresidente/{idPres}/{idSquad}")
+	@GetMapping("/admin/aggiungiPresidenteASquadra/{idPres}/{idSquad}")
 	public String presidenteToAdd(@PathVariable("idPres") Long idPresidente, @PathVariable("idSquad") Long idSquadra, Model model) {
 		Squadra squadra = this.squadraRepository.findById(idSquadra).get();
 		Presidente presidente = this.presidenteRepository.findById(idPresidente).get();

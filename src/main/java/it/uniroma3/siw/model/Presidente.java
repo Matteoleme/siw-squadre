@@ -23,10 +23,9 @@ public class Presidente {
 	@NotBlank
 	private String cognome;
 	@NotBlank
-	@Size(min = 15, max = 15)
+	@Size(min = 16, max = 16)
 	private String cf;
 	private String luogoNascita;
-	@NotBlank
 	@Past
 	private LocalDate dataDiNascita;
 	
