@@ -9,7 +9,7 @@
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -24,19 +24,18 @@
         </div>
     </nav>
 
-    <h1 class="main-title">Elenco Squadre - Campionato</h1>
+    <h1 class="main-title">Aggiungi Presidente alla squadra</h1>
 
-    <div th:if="${squadre.isEmpty()}">Non ci sono squadre nel sistema</div>
+	<h2 > Aggiungi i dati di una nuova squadra</h2>
+    <div th:if="${presidenti.isEmpty()}">Non ci sono presidenti liberi</div>
+    <ul>
+      <li th:each="presidente : ${presidenti}">
+        <a th:href="@{'/admin/aggiungiPresidenteASquadra/' + ${presidente.id} + '/' + ${squadra.id}}"
+           th:text="${presidente.nome} + ${presidente.cognome} + '('+ ${presidente.dataDiNascita} +')'">Aurelio De Laurentiis (1950)</a>
+      </li>
+    </ul>
+    </form>
 
-    <div th:each="squadra : ${squadre}" class="squadra">
-        <h2 th:text="${squadra.nome}">Napoli</h2>
-        <a th:text="'Presidente: ' + ${squadra.presidente.nome} + ' ' + ${squadra.presidente.cognome}" th:href="@{'/presidenti' + '/' + ${squadra.presidente.id}}" class="presidente">Presidente: Aurelio De Laurentiis</a>
-        <p th:text="'Anno Fondazione: ' + ${squadra.annoFondazione}" class="anno-fondazione">Anno Fondazione: 1926</p>
-        <a th:href="@{'/squadre' + '/' + ${squadra.id}}"> Elenco calciatori </a>
-        <!-- Aggiungi ulteriori dettagli della squadra a tuo piacimento -->
-    </div>
-
-    <!-- Puoi usare Thymeleaf per ciclare attraverso le squadre qui -->
 
 </body>
 </html>
