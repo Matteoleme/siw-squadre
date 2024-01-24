@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Elenco Squadre - Campionato</title>
+	<!-- Favicon-->
+	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+	<!-- Core theme CSS (includes Bootstrap)-->
+	<link href="/css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container px-5">
+			<a class="navbar-brand" href="#!">Serie A magement</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" href="#!">Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<h1 class="main-title">Modifica squadra</h1>
+
+	<div th:if="${squadra}">
+		<form th:action="@{'/admin/modificaAnnoSedeSquadra'}" method="post" th:object="${squadra}">
+			<!--ovviamente sono da togliere ricordati di trovare soluzione meno sporca-->
+			<input type="hidden" th:field="${squadra.id}" required>
+			<input type="hidden" th:field="${squadra.nome}" required>			
+			<input type="hidden" th:field="${squadra.presidente}" required>
+			
+			<label for="anno_fondazione">Anno Fondazione:</label>
+			<input type="number" th:field="${squadra.annoFondazione}" required>
+			<!--<span th:if="${#fields.hasErrors('annoFondazione')}" th:errors="${squadra.annoFondazione}"
+				th:style="'color:red'"></span>-->
+
+			<label for="indirizzo_sede">Indirizzo Sede:</label>
+			<input type="text" th:field="${squadra.indirizzoSede}" required>
+			<!--<span th:if="${#fields.hasErrors('indirizzoSede')}" th:errors="${squadra.indirizzoSede}"
+				th:style="'color:red'"></span>-->
+
+			<input type="submit" value="Modifica Squadra">
+		</form>
+
+		<div th:if="${presidenti.isEmpty()}">Non ci sono presidenti liberi</div>
+		<ul>
+			<li th:each="presidente : ${presidenti}">
+				<a th:href="@{'/admin/aggiungiPresidenteASquadra/' + ${presidente.id} + '/' + ${squadra.id}}"
+					th:text="${presidente.nome} + ${presidente.cognome} + '('+ ${presidente.dataDiNascita} +')'">Aurelio
+					De Laurentiis (1950)</a>
+			</li>
+		</ul>
+
+
+	</div>
+	<div th:unless="${squadra}">Non esiste la squadra</div>
+
+	<!-- Puoi usare Thymeleaf per ciclare attraverso le squadre qui -->
+
+</body>
+
+</html>

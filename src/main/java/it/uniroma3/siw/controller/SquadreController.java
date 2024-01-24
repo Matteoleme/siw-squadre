@@ -74,5 +74,35 @@ public class SquadreController {
 		return "squadre.html";
 	}
 	
+	// mostra tutte le squadre con un link per modificarle
+	@GetMapping("admin/squadraDaModifare")
+	public String showSquadreDaModificare(Model model) {
+		model.addAttribute("squadre", this.squadraRepository.findAll());
+		return "admin/squadre.html";
+	}
 	
+	// mostra una form per modificare anno e sede e sotto una lista di presidenti liberi
+	@GetMapping("/admin/modificaSquadra/{id}")
+	public String editSquadra(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("squadra", this.squadraRepository.findById(id).get());
+		model.addAttribute("presidenti", this.presidenteRepository.findPresidentiLiberi());
+		return "admin/modificaSquadra.html";
+	}
+	
+	@PostMapping("/admin/modificaAnnoSedeSquadra")
+	public String modificaAnnoSedeSquadra(/*@PathVariable("anno") Integer anno, @PathVariable("sede") String indirizzo,*/ @ModelAttribute("squadra") Squadra squadra, Model model) {
+		
+//		if (!bindingResult.hasErrors()) {
+//			squadra.setAnnoFondazione(anno);
+//			squadra.setIndirizzoSede(indirizzo);
+			this.squadraRepository.save(squadra);
+			model.addAttribute("squadra", squadra);
+			return "admin/squadra.html";
+//		}
+//		else {
+//			model.addAttribute("squadra", squadra.getId());
+//			return "admin/modificaSquadra.html";
+//		}
+	}
+		
 }

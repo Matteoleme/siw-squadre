@@ -11,7 +11,7 @@ public interface PresidenteRepository extends CrudRepository<Presidente, Long> {
 	
 	@Query(value="SELECT p.* "
 			+ "FROM presidente as p "
-			+ "LEFT JOIN squadra as s ON p.id = s.presidente_id ", nativeQuery=true)
-			//+ "WHERE s.presidente_id IS NULL")
+			+ "LEFT JOIN squadra as s ON p.id = s.presidente_id "
+			+ "WHERE s.presidente_id IS NULL", nativeQuery=true)
 	public Iterable<Presidente>findPresidentiLiberi();
 }
