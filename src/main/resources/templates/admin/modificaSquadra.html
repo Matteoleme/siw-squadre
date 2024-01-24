@@ -22,7 +22,7 @@
 				aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link" href="#!">Login</a></li>
+					<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
 				</ul>
 			</div>
 		</div>
@@ -31,11 +31,11 @@
 	<h1 class="main-title">Modifica squadra</h1>
 
 	<div th:if="${squadra}">
-		<form th:action="@{'/admin/modificaAnnoSedeSquadra'}" method="post" th:object="${squadra}">
-			<!--ovviamente sono da togliere ricordati di trovare soluzione meno sporca-->
+		<form th:action="@{'/admin/modificaAnnoSedeSquadra/' + ${squadra.id}}" method="post" th:object="${squadra}">
+			<!--ovviamente sono da togliere ricordati di trovare soluzione meno sporca
 			<input type="hidden" th:field="${squadra.id}" required>
 			<input type="hidden" th:field="${squadra.nome}" required>			
-			<input type="hidden" th:field="${squadra.presidente}" required>
+			<input type="hidden" th:field="${squadra.presidente}" required>-->
 			
 			<label for="anno_fondazione">Anno Fondazione:</label>
 			<input type="number" th:field="${squadra.annoFondazione}" required>

@@ -1,5 +1,8 @@
 package it.uniroma3.siw.controller;
 
+import java.sql.Time;
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.controller.validator.SquadraValidator;
 import it.uniroma3.siw.model.Presidente;
@@ -89,20 +93,22 @@ public class SquadreController {
 		return "admin/modificaSquadra.html";
 	}
 	
-	@PostMapping("/admin/modificaAnnoSedeSquadra")
-	public String modificaAnnoSedeSquadra(/*@PathVariable("anno") Integer anno, @PathVariable("sede") String indirizzo,*/ @ModelAttribute("squadra") Squadra squadra, Model model) {
-		
-//		if (!bindingResult.hasErrors()) {
-//			squadra.setAnnoFondazione(anno);
-//			squadra.setIndirizzoSede(indirizzo);
+	@PostMapping("/admin/modificaAnnoSedeSquadra/{id}")
+	public String modificaAnnoSedeSquadra(@PathVariable("id") Long id, @RequestParam("annoFondazione") Integer annoFondazione, @RequestParam("indirizzoSede") String indirizzoSede, Model model) {
+		Squadra squadra = this.squadraRepository.findById(id).orElse(null);
+		if ((int)annoFondazione>1880 && (int)annoFondazione< LocalDate.now().getYear()) {
+			squadra.setAnnoFondazione(annoFondazione);
+			squadra.setIndirizzoSede(indirizzoSede);
 			this.squadraRepository.save(squadra);
 			model.addAttribute("squadra", squadra);
 			return "admin/squadra.html";
-//		}
-//		else {
-//			model.addAttribute("squadra", squadra.getId());
-//			return "admin/modificaSquadra.html";
-//		}
+		}
+		else {
+			// prova a mettere un messaggio anche spartano per indicare che è stata messo una data sbagliata
+			model.addAttribute("squadra", squadra);
+			model.addAttribute("presidenti", this.presidenteRepository.findPresidentiLiberi());
+			return "admin/modificaSquadra.html";
+		}
 	}
 		
 }
