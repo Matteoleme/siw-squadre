@@ -21,7 +21,7 @@ public class Giocatore {
 	private String nome;
 	@NotBlank
 	private String cognome;
-	private String luogoNascita;
+	private String nazionalita;
 	@NotBlank
 	private String ruolo;
 	@Past
@@ -54,12 +54,12 @@ public class Giocatore {
 		this.cognome = cognome;
 	}
 
-	public String getLuogoNascita() {
-		return luogoNascita;
+	public String getNazionalita() {
+		return nazionalita;
 	}
 
-	public void setLuogoNascita(String luogoNascita) {
-		this.luogoNascita = luogoNascita;
+	public void setNazionalita(String nazionalita) {
+		this.nazionalita = nazionalita;
 	}
 
 	public String getRuolo() {
