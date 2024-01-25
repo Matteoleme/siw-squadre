@@ -1,33 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 
 <head>
-	<title>SiwMovie - Registrazione conclusa</title>
-	<link rel="stylesheet" href="/css/stile.css" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Presidente</title>
+	<!-- Favicon-->
+	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+	<!-- Core theme CSS (includes Bootstrap)-->
+	<link href="/css/styles.css" rel="stylesheet" />
 </head>
 
 <body>
-	<header>
-		<div >
-			<a href="/logout">Logout</a>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container px-5">
+			<a class="navbar-brand" href="/">Serie A management</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+				</ul>
+			</div>
 		</div>
-	</header>
+	</nav>
 
-	<div>
-		<a href="/"><img src="/images/logo-siw.png" width="50%"/></a>
-	</div>
 	<h1>Congratulazioni ti sei registrato!</h1>
 	<div>
 		<span>Nome: </span>
-		<span th:text="${user.name}"></span>
+		<span th:text="${utente.nome}"></span>
 	</div>
 	<div>
 		<span>Cognome: </span>
-		<span th:text="${user.surname}"></span>
+		<span th:text="${utente.cognome}"></span>
 	</div>
 	<div>
 		<span>Email: </span>
-		<span th:text="${user.email}"></span>
+		<span th:text="${utente.email}"></span>
 	</div>
+
+
 </body>
+
 </html>

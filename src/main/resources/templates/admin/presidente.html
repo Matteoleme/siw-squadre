@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container px-5">
-            <a class="navbar-brand" href="/">Serie A magement</a>
+            <a class="navbar-brand" href="/">Serie A management</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -26,7 +26,7 @@
 
     <h1 class="main-title">Presidente</h1>
 
-    <div th:if="${presidente}">
+    <div class="presidente-info" th:if="${presidente}">
 
         <h2 th:text="${presidente.nome} + ' ' + ${presidente.cognome}">Nome Cognome</h2>
         

@@ -1,56 +1,71 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Aggiungi nuovo presidente</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/css/styles.css" rel="stylesheet" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Aggiungi nuovo presidente</title>
+	<!-- Favicon-->
+	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+	<!-- Core theme CSS (includes Bootstrap)-->
+	<link href="/css/styles.css" rel="stylesheet" />
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container px-5">
-            <a class="navbar-brand" href="/">Serie A magement</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container px-5">
+			<a class="navbar-brand" href="/">Serie A magement</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-    <h1 class="main-title">Aggiungi un nuovo presidente</h1>
+	<h1 class="main-title">Aggiungi un nuovo presidente</h1>
 
-	<h2 > Aggiungi i dati di un nuovo presidente</h2>
-    <form th:action="@{'/admin/aggiungiPresidente'}" method="post" th:object="${presidente}"}>
-        <label for="nome">Nome:</label>
-        <input type="text" th:field="${presidente.nome}" required>
-        <span th:if="${#fields.hasErrors('nome')}" th:errors="${presidente.nome}" th:style="'color:red'"></span>
-        
-        <label for="nome">Cognome:</label>
-        <input type="text" th:field="${presidente.cognome}" required>
-        <span th:if="${#fields.hasErrors('cognome')}" th:errors="${presidente.cognome}" th:style="'color:red'"></span>
-        
-        <label for="nome">Codice Fiscale:</label>
-        <input type="text" th:field="${presidente.cf}" required>
-        <span th:if="${#fields.hasErrors('cf')}" th:errors="${presidente.cf}" th:style="'color:red'"></span>
-        
-        <label for="data_di_nascita">Data di nascita:</label>
-        <input type="date" th:field="${presidente.dataDiNascita}" required>
-		<span th:if="${#fields.hasErrors('dataDiNascita')}" th:errors="${presidente.dataDiNascita}" th:style="'color:red'"></span>
-		
-        <label for="luogo_nascita">Luogo di nascita</label>
-        <input type="text" th:field="${presidente.luogoNascita}" required>
-		<span th:if="${#fields.hasErrors('luogoNascita')}" th:errors="${presidente.luogoNascita}" th:style="'color:red'"></span>
-		
-        <input type="submit" value="Aggiungi nuovo Presidente">
-    </form>
+	<form class="form-aggiungi" th:action="@{'/admin/aggiungiPresidente'}" method="post" th:object="${presidente}" }>
+		<div class="form-aggiungi-campo">
+			<label for="nome">Nome:</label>
+			<input type="text" th:field="${presidente.nome}" required>
+			<span th:if="${#fields.hasErrors('nome')}" th:errors="${presidente.nome}" th:style="'color:red'"></span>
+		</div>
+		<div class="form-aggiungi-campo">
+			<label for="nome">Cognome:</label>
+			<input type="text" th:field="${presidente.cognome}" required>
+			<span th:if="${#fields.hasErrors('cognome')}" th:errors="${presidente.cognome}"
+				th:style="'color:red'"></span>
+		</div>
+		<div class="form-aggiungi-campo">
+			<label for="nome">Codice Fiscale:</label>
+			<input type="text" th:field="${presidente.cf}" required>
+			<span th:if="${#fields.hasErrors('cf')}" th:errors="${presidente.cf}" th:style="'color:red'"></span>
+		</div>
+		<div class="form-aggiungi-campo">
+			<label for="data_di_nascita">Data di nascita:</label>
+			<input type="date" th:field="${presidente.dataDiNascita}" required>
+			<span th:if="${#fields.hasErrors('dataDiNascita')}" th:errors="${presidente.dataDiNascita}"
+				th:style="'color:red'"></span>
+		</div>
+		<div class="form-aggiungi-campo">
+			<label for="luogo_nascita">Luogo di nascita</label>
+			<input type="text" th:field="${presidente.luogoNascita}" required>
+			<span th:if="${#fields.hasErrors('luogoNascita')}" th:errors="${presidente.luogoNascita}"
+				th:style="'color:red'"></span>
+
+		</div>
+		<div class="form-aggiungi-button">
+		<button type="submit">Aggiungi nuovo Presidente</button>
+		</div>
+	</form>
 
 
 </body>
+
 </html>

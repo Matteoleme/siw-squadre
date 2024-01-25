@@ -10,7 +10,7 @@
 	<!-- Favicon-->
 	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 	<!-- Core theme CSS (includes Bootstrap)-->
-	<link href="/css/styles.css" rel="stylesheet" />
+	<link href="css/styles.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -19,30 +19,27 @@
 			<a class="navbar-brand" href="/">Serie A magement</a>
 		</div>
 	</nav>
+	<div class="login-container">
+		<div class="login-box">
+			<h2>Login</h2>
+			<form th:action="@{/login}" method="POST">
+				<label for="username">Username:</label>
+				<span><input name="username" type="text" required /></span>
 
-	<h1 class="main-title">Autenticati</h1>
+				<label for="password">Password:</label>
+				<span><input name="password" type="password" required /></span>
 
-	<form th:action="@{/login}" method="POST">
-		<div>
-			<span>Username:</span>
-			<span><input name="username" type="text" required /></span>
+				<div class="button-container">
+					<a th:href="@{/registrati}" > <button type="button" class="register-button"th:text="Registrati"> Registrati</button></a>
+					<button class="login-button" type="submit">Login</button>
+				</div>
+				
+				<div>
+					<span th:if="${param.error != null}">Username o password errati</span>
+				</div>
+			</form>
 		</div>
-		<div>
-			<span>Password:</span>
-			<span><input name="password" type="password" required /></span>
-		</div>
-		<div>
-			<span th:if="${param.error != null}">Username o password errati</span>
-		</div>
-		<div>
-			<span><button type="submit">Login</button></span>
-		</div>
-	</form>
-	<div>
-		<a th:href="@{/registrati}" th:text="Registrati">Registrati</a>
 	</div>
-	</form>
-
 
 </body>
 
