@@ -9,9 +9,12 @@ public interface PresidenteRepository extends CrudRepository<Presidente, Long> {
 
 	public boolean existsByCf(String cf);
 	
+	public Presidente findByNomeAndCognome(String nome, String cognome);
+	
 	@Query(value="SELECT p.* "
 			+ "FROM presidente as p "
 			+ "LEFT JOIN squadra as s ON p.id = s.presidente_id "
 			+ "WHERE s.presidente_id IS NULL", nativeQuery=true)
 	public Iterable<Presidente>findPresidentiLiberi();
+	
 }
