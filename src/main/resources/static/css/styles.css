@@ -4823,6 +4823,7 @@ fieldset:disabled .btn {
 .card-citation {
 	margin-bottom: 0;
 	text-align: justify;
+	font-style: italic;
 }
 
 .card-link+.card-link {
@@ -12763,5 +12764,52 @@ input {
 
 .lista-nomi li {
 	margin-top: 5px;
+}
 
+.giocatore-info {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	max-width: 90%;
+	margin: 0 auto;
+	/* Per centrare il container sulla pagina */
+}
+
+.giocatore-info-column {
+	flex-basis: calc(25% - 20px);
+	/* Calcola la larghezza della colonna (25% della larghezza totale) con uno spazio tra le colonne di 20px */
+	margin-bottom: 20px;
+	/* Aggiungi uno spazio tra le righe */
+	padding: 15px;
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+	/* Aggiungi una bordatura per separare le colonne */
+	text-align: center;
+	margin-top: 2%;
+}
+
+.giocatore-info-column p{
+	color: var(--bs-gray-700);
+	font-style: italic;
+}
+
+.griglia-giocatori {
+	border-collapse: collapse;
+	width: 90%;
+	margin: 0 auto;
+}
+.table-header{
+	font-size: large;
+	font-style: oblique;
+}
+.griglia-giocatori th,
+td {
+
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+
+.griglia-giocatori tr:nth-child(even) {
+	background-color: var(--bs-gray-300);
 }

@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title>Giocatore</title>
+	<title>Elenco Giocatori - Campionato</title>
 	<!-- Favicon-->
 	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 	<!-- Core theme CSS (includes Bootstrap)-->
@@ -28,44 +28,33 @@
 		</div>
 	</nav>
 
-	<h1 class="main-title">Visualizza dettagli giocatore</h1>
+	<h1 class="main-title">Giocatori della serie A</h1>
 
-	<div th:if="${giocatore}">
+	<div th:if="${giocatori.isEmpty()}">Non ci sono giocatori caricati nel sistema</div>
 
-		<h2 style="text-align: center;" center th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}">Mario Rossi</h2>
-		<div class="giocatore-info">
-			<div class="giocatore-info-column">
-				<h3>
-					Squadra
-				</h3>
-				<p th:if="${giocatore.squadra}"> <a th:text="${giocatore.squadra.nome}"
-						th:href="@{'/squadre' + '/' + ${giocatore.squadra.id}}"> Roma </a></p>
-				<p th:unless="${giocatore.squadra}" th:text="'Squadra ancora non assegnata'"></p>
-			</div>
-			<div class="giocatore-info-column">
-				<h3>
-					Ruolo
-				</h3>
-				<p th:if="${giocatore.ruolo}" th:text="${giocatore.ruolo}"> centrocampista</p>
-			</div>
-			<div class="giocatore-info-column">
-				<h3>
-					Nazionalità
-				</h3>
-				<p th:text="${giocatore.nazionalita}">Italiana </p>
-			</div>
-			<div class="giocatore-info-column">
-				<h3>
-					Nato il
-				</h3>
-				<p th:text="${giocatore.dataDiNascita}">01/04/1990)</p>
-			</div>
+	<table class="griglia-giocatori">
+		<tr class="table-header">
+			<th>Giocatore</th>
+			<th>Squadra</th>
+			<th>Ruolo</th>
+			<th>Data di nascita</th>
+			<th>Nazionalità</th>
+		</tr>
+		<div th:each="giocatore : ${giocatori}">
 
+			<tr class="giocatore">
+				<th>
+					<a th:href="'/admin/giocatore/' + ${giocatore.id}"
+						th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}">Francesco Totti</a>
+				</th>
+				<th th:if="${giocatore.squadra}" th:text="${giocatore.squadra.nome}">Roma</th>
+				<th th:unless="${giocatore.squadra}" th:text="'Nessuna squadra assegnata'"></th>
+				<th th:text="${giocatore.ruolo}">Attaccante</th>
+				<th th:text="${giocatore.dataDiNascita}">01-02-1990</th>
+				<th th:text="${giocatore.nazionalita}">Italiana</th>
+			</tr>
 		</div>
-	</div>
-	<div th:unless="${giocatore}">Non esiste</div>
-
-
+	</table>
 </body>
 
 </html>
