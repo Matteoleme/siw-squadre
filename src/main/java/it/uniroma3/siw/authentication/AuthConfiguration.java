@@ -48,6 +48,8 @@ public class AuthConfiguration {
 				.requestMatchers(HttpMethod.POST, "/registrati", "/login").permitAll()
 				.requestMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(Credenziali.ADMIN_ROLE)
 				.requestMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(Credenziali.ADMIN_ROLE)
+				.requestMatchers(HttpMethod.GET, "/presidente/**").hasAnyAuthority(Credenziali.PRESIDENTE_ROLE)
+				.requestMatchers(HttpMethod.POST, "/presidente/**").hasAnyAuthority(Credenziali.PRESIDENTE_ROLE)
 				// tutti gli utenti autenticati possono accere alle pagine rimanenti
 				.anyRequest().authenticated()
 				// LOGIN: qui definiamo il login
