@@ -1,6 +1,5 @@
 package it.uniroma3.siw.controller;
 
-import java.sql.Time;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,9 +67,28 @@ public class SquadreController {
 		squadra.setPresidente(presidente);
 		this.squadraRepository.save(squadra);
 		model.addAttribute("squadra", squadra);
-		return "squadra.html";
+		// aggiungi opzione dove se sei admin devi andare in /admin/squadra.html
+		return "/admin/squadra.html";
 	}
 
+	@GetMapping("/admin/squadra/{id}")
+	public String showSquadraAdmin(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("squadra", this.squadraRepository.findById(id));
+		return "admin/squadra.html";
+	}
+	
+	@GetMapping("/squadra/{id}")
+	public String showSquadra(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("squadra", this.squadraRepository.findById(id).get());
+		return "squadra.html";
+	}
+	
+	@GetMapping("/giocatoriSquadra/{id}")
+	public String showGiocatoriSquadra(@PathVariable("id") Long id, Model model) {
+		 Squadra squadra = this.squadraRepository.findById(id).get();
+		 model.addAttribute("giocatori", this.giocatoreRepository.findBySquadra(squadra));
+		return "giocatori.html";
+	}
 	
 	@GetMapping("/squadre")
 	public String showSquads(Model model) {
