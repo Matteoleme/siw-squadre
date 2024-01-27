@@ -60,6 +60,37 @@ public class GiocatoreController {
 		return "admin/giocatore.html";
 	}
 
+	// questi due metodi consentono al presidente di aggiungere un nuovo giocatore nel sistema e metterlo nella sua squadra
+	@GetMapping("/presidente/formAggiungiGiocatore")
+	public String formAggiungiGiocatorePresidente(Model model) {
+		model.addAttribute("giocatore", new Giocatore());
+		return "presidente/formAggiungiGiocatore.html";
+	}
+
+	@PostMapping("/presidente/aggiungiGiocatore")
+	public String aggiungiGiocatorePresidente(@Valid @ModelAttribute("giocatore") Giocatore giocatore,
+			BindingResult bindingResult, Model model) {
+		if (!bindingResult.hasErrors()) {
+			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+					.getPrincipal();
+			Credenziali credenziali = credenzialiService.getCredenziali(userDetails.getUsername());
+			// poi devo avere i dettagli della squadra dove aggiungere il giocatore tramite
+			// le informazioni del presidente loggato
+			Presidente presidente = this.presidenteRepository.findByNomeAndCognome(credenziali.getUtente().getNome(),
+					credenziali.getUtente().getCognome());
+			Squadra squadra = presidente.getSquadra();
+			giocatore.setSquadra(squadra);
+			this.giocatoreRepository.save(giocatore);
+			model.addAttribute("giocatore", giocatore);
+			return "presidente/giocatore.html";
+		} else {
+			model.addAttribute("messaggioErrore", "Questo giocatore esiste già");
+			model.addAttribute("giocatore", new Giocatore());
+			return "presidente/formAggiungiGiocatore.html";
+		}
+	}
+
+	// Questi due metodi consentono di inserire un giocatore già presente nel sistema nella squadra del presidente
 	@GetMapping("/presidente/scegliGiocatore")
 	public String scegliGiocatorePresidente(Model model) {
 		// alla pagina devo passare tutti i giocatori che non sono collegati a nessuna
@@ -73,8 +104,10 @@ public class GiocatoreController {
 		// per farmi restituire i dettagli del presidente loggato
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credenziali credenziali = credenzialiService.getCredenziali(userDetails.getUsername());
-		// poi devo avere i dettagli della squadra dove aggiungere il giocatore tramite le informazioni del presidente loggato
-		Presidente presidente = this.presidenteRepository.findByNomeAndCognome(credenziali.getUtente().getNome(), credenziali.getUtente().getCognome());
+		// poi devo avere i dettagli della squadra dove aggiungere il giocatore tramite
+		// le informazioni del presidente loggato
+		Presidente presidente = this.presidenteRepository.findByNomeAndCognome(credenziali.getUtente().getNome(),
+				credenziali.getUtente().getCognome());
 		Squadra squadra = presidente.getSquadra();
 		Giocatore nuovoGiocatore = this.giocatoreRepository.findById(idGiocatore).get();
 		nuovoGiocatore.setSquadra(squadra);
