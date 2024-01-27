@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import it.uniroma3.siw.model.Credenziali;
 import it.uniroma3.siw.model.Utente;
 import it.uniroma3.siw.service.CredenzialiService;
+import it.uniroma3.siw.service.UtenteService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -44,6 +45,7 @@ public class AuthenticationController {
 			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
 					.getPrincipal();
 			Credenziali credenziali = credenzialiService.getCredenziali(userDetails.getUsername());
+			model.addAttribute("utente", credenziali.getUtente());
 			if (credenziali.getRuolo().equals(Credenziali.ADMIN_ROLE)) {
 				return "admin/index.html";
 			} else if (credenziali.getRuolo().equals(Credenziali.PRESIDENTE_ROLE)) {
@@ -58,6 +60,7 @@ public class AuthenticationController {
 
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credenziali credenziali = credenzialiService.getCredenziali(userDetails.getUsername());
+		model.addAttribute("utente", credenziali.getUtente());
 		if (credenziali.getRuolo().equals(Credenziali.ADMIN_ROLE)) {
 			return "admin/index.html";
 		} else if (credenziali.getRuolo().equals(Credenziali.PRESIDENTE_ROLE)) {
