@@ -32,24 +32,21 @@
 
 	<div class="form-aggiungi" th:if="${squadra}">
 		<form th:action="@{'/admin/modificaAnnoSedeSquadra/' + ${squadra.id}}" method="post" th:object="${squadra}">
-		
-		<h4 th:text="${squadra.nome}">
-			
-		</h4>
-		<h5>
-			Informazioni generali
-		</h5>
+
+			<h4 th:text="${squadra.nome}">
+
+			</h4>
+			<h5>
+				Informazioni generali
+			</h5>
+			<p th:if="errore" th:text="${errore}" th:style="'color:red'"></p>
 			<div class="form-aggiungi-campo">
 				<label for="anno_fondazione">Anno Fondazione:</label>
 				<input type="number" th:field="${squadra.annoFondazione}" required>
-				<!--<span th:if="${#fields.hasErrors('annoFondazione')}" th:errors="${squadra.annoFondazione}"
-				th:style="'color:red'"></span>-->
 			</div>
 			<div class="form-aggiungi-campo">
 				<label for="indirizzo_sede">Indirizzo Sede:</label>
 				<input type="text" th:field="${squadra.indirizzoSede}" required>
-				<!--<span th:if="${#fields.hasErrors('indirizzoSede')}" th:errors="${squadra.indirizzoSede}"
-				th:style="'color:red'"></span>-->
 			</div>
 			<div class="form-aggiungi-button">
 				<button type="submit">Modifica Squadra </button>
@@ -78,8 +75,12 @@
 
 	</div>
 	<div th:unless="${squadra}">Non esiste la squadra</div>
-
-	<!-- Puoi usare Thymeleaf per ciclare attraverso le squadre qui -->
+	<!-- Footer-->
+	<footer class="py-5 bg-dark">
+		<div class="container px-4 px-lg-5">
+			<p class="m-0 text-center text-white">Copyright &copy; MM Website 2024</p>
+		</div>
+	</footer>
 
 </body>
 

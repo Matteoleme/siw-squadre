@@ -122,7 +122,7 @@ public class SquadreController {
 			return "admin/squadra.html";
 		}
 		else {
-			// prova a mettere un messaggio anche spartano per indicare che è stata messo una data sbagliata
+			model.addAttribute("errore", "Attenzione dati inseriti non validi!");
 			model.addAttribute("squadra", squadra);
 			model.addAttribute("presidenti", this.presidenteRepository.findPresidentiLiberi());
 			return "admin/modificaSquadra.html";

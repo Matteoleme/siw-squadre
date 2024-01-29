@@ -1,40 +1,53 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Squadra</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/css/styles.css" rel="stylesheet" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Squadra</title>
+	<!-- Favicon-->
+	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+	<!-- Core theme CSS (includes Bootstrap)-->
+	<link href="/css/styles.css" rel="stylesheet" />
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container px-5">
-            <a class="navbar-brand" href="/">Serie A management</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container px-5">
+			<a class="navbar-brand" href="/">Serie A management</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-    <h1 class="main-title">Squadra</h1>
+	<h1 class="main-title">Squadra</h1>
 
-    <div th:if="${squadra}" class="generic-container">
+	<div th:if="${squadra}" class="generic-container">
 
-        <h2 th:text="${squadra.nome}">Napoli</h2>
-        <a th:if="${squadra.presidente}" th:text="'Presidente: ' + ${squadra.presidente.nome} + ' ' +${squadra.presidente.cognome}" th:href="@{'/admin/presidente' + '/' + ${squadra.presidente.id}}" class="presidente">Presidente: Aurelio De Laurentiis</a>
-        <p th:unless="${squadra.presidente}"> Nessun presidente assegnato </p>
-        <p th:text="'Anno Fondazione: ' + ${squadra.annoFondazione}" class="anno-fondazione">Anno Fondazione: 1926</p>
-        <p th:text="'Sede: ' + ${squadra.indirizzoSede}" >Sede: Via qualcosa</p>
-    </div>
-    <div th:unless="${squadra}">Non esiste la squadra</div>
-
+		<h2 th:text="${squadra.nome}">Napoli</h2>
+		<a th:if="${squadra.presidente}"
+			th:text="'Presidente: ' + ${squadra.presidente.nome} + ' ' +${squadra.presidente.cognome}"
+			th:href="@{'/admin/presidente' + '/' + ${squadra.presidente.id}}" class="presidente">Presidente: Aurelio De
+			Laurentiis</a>
+		<p th:unless="${squadra.presidente}"> Nessun presidente assegnato </p>
+		<p th:text="'Anno Fondazione: ' + ${squadra.annoFondazione}" class="anno-fondazione">Anno Fondazione: 1926</p>
+		<p th:text="'Sede: ' + ${squadra.indirizzoSede}">Sede: Via qualcosa</p>
+	</div>
+	<div th:unless="${squadra}">Non esiste la squadra</div>
+	<!-- Footer-->
+	<footer class="py-5 bg-dark">
+		<div class="container px-4 px-lg-5">
+			<p class="m-0 text-center text-white">Copyright &copy; MM Website 2024</p>
+		</div>
+	</footer>
 </body>
+
 </html>

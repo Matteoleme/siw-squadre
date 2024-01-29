@@ -30,17 +30,23 @@
 				<span><input name="password" type="password" required /></span>
 
 				<div class="button-container">
-					<a th:href="@{/registrati}" > <button type="button" class="register-button"th:text="Registrati"> Registrati</button></a>
+					<a th:href="@{/registrati}"> <button type="button" class="register-button" th:text="Registrati">
+							Registrati</button></a>
 					<button class="login-button" type="submit">Login</button>
 				</div>
-				
+
 				<div>
 					<span th:if="${param.error != null}">Username o password errati</span>
 				</div>
 			</form>
 		</div>
 	</div>
-
+	<!-- Footer-->
+	<footer class="py-5 bg-dark">
+		<div class="container px-4 px-lg-5">
+			<p class="m-0 text-center text-white">Copyright &copy; MM Website 2024</p>
+		</div>
+	</footer>
 </body>
 
 </html>

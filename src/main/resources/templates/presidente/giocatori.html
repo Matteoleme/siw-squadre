@@ -28,7 +28,7 @@
 		</div>
 	</nav>
 
-	<h1 th:text = "${message}" class="main-title"></h1>
+	<h1 th:text="${message}" class="main-title"></h1>
 
 	<div th:if="${giocatori.isEmpty()}">Non ci sono giocatori liberi</div>
 
@@ -52,6 +52,12 @@
 			</tr>
 		</div>
 	</table>
+	<!-- Footer-->
+	<footer class="py-5 bg-dark">
+		<div class="container px-4 px-lg-5">
+			<p class="m-0 text-center text-white">Copyright &copy; MM Website 2024</p>
+		</div>
+	</footer>
 </body>
 
 </html>
