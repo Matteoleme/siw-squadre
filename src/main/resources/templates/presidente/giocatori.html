@@ -28,7 +28,7 @@
 		</div>
 	</nav>
 
-	<h1 class="main-title">Giocatori senza squadra</h1>
+	<h1 th:text = "${message}" class="main-title"></h1>
 
 	<div th:if="${giocatori.isEmpty()}">Non ci sono giocatori liberi</div>
 

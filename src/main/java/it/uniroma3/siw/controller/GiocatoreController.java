@@ -96,6 +96,7 @@ public class GiocatoreController {
 		// alla pagina devo passare tutti i giocatori che non sono collegati a nessuna
 		// squadra
 		model.addAttribute("giocatori", this.giocatoreRepository.findGiocatoriLiberi());
+		model.addAttribute("message", "Giocatori senza squadra");
 		return "presidente/giocatori.html";
 	}
 
@@ -113,6 +114,7 @@ public class GiocatoreController {
 		nuovoGiocatore.setSquadra(squadra);
 		this.giocatoreRepository.save(nuovoGiocatore);
 		// ora passo tutti i giocatori della squadra del presidente
+		model.addAttribute("message", "Giocatori della sua squadra");
 		model.addAttribute("giocatori", this.giocatoreRepository.findBySquadra(squadra));
 		return "presidente/giocatori.html";
 	}

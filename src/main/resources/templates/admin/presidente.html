@@ -26,16 +26,15 @@
 
     <h1 class="main-title">Presidente</h1>
 
-    <div class="presidente-info" th:if="${presidente}">
+    <div class="generic-container" th:if="${presidente}">
 
         <h2 th:text="${presidente.nome} + ' ' + ${presidente.cognome}">Nome Cognome</h2>
         
         <p th:text="'Data di nascita: ' + ${presidente.dataDiNascita}" class="data-nascita">Data di nascita: 01/04/1950</p>
         <p th:text="'Luogo di nascita: ' + ${presidente.luogoNascita}">Roma</p>
-        <a th:if="${presidente.squadra}" th:href="@{'/squadre' + '/' + ${squadra.id}}" th:text="${presidente.squadra.nome}"> Nome Squadra </a>
+        <a th:if="${presidente.squadra}" th:text="'Proprietario di: ' + ${presidente.squadra.nome}"> Nome Squadra </a>
         <a th:unless="${presidente.squadra}">Nessuna squadra ancora assegnata!</a>
         
-        <!-- Aggiungi ulteriori dettagli della squadra a tuo piacimento -->
     </div>
     <div th:unless="${presidente}">Non esiste</div>
 

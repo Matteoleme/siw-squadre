@@ -73,7 +73,7 @@ public class SquadreController {
 
 	@GetMapping("/admin/squadra/{id}")
 	public String showSquadraAdmin(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("squadra", this.squadraRepository.findById(id));
+		model.addAttribute("squadra", this.squadraRepository.findById(id).get());
 		return "admin/squadra.html";
 	}
 	

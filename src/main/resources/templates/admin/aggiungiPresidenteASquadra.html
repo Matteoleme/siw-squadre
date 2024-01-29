@@ -30,19 +30,21 @@
 
 	<h1 class="main-title">Aggiungi Presidente alla squadra</h1>
 
-	<h2> Aggiungi i dati di una nuova squadra</h2>
-	<div th:if="${presidenti.isEmpty()}">Non ci sono presidenti liberi</div>
-	<h4>
-		Premi <a th:href="'/admin/squadra/' + ${squadra.id}"> qui </a>se non vuoi aggiungere un presidente alla squadra
-	</h4>
-	<ul>
-		<li th:each="presidente : ${presidenti}">
-			<a th:href="@{'/admin/aggiungiPresidenteASquadra/' + ${presidente.id} + '/' + ${squadra.id}}"
-				th:text="${presidente.nome} + ' ' + ${presidente.cognome} + '('+ ${presidente.dataDiNascita} +')'">Aurelio
-				De Laurentiis (1950)</a>
-		</li>
-	</ul>
+	<div class="generic-container">
+		<div th:if="${presidenti.isEmpty()}">Non ci sono presidenti liberi</div>
+		<h4>
+			Premi <a th:href="'/admin/squadra/' + ${squadra.id}"> qui</a> se non vuoi aggiungere un presidente alla
+			squadra
+		</h4>
+		<ul>
+			<li th:each="presidente : ${presidenti}">
+				<a th:href="@{'/admin/aggiungiPresidenteASquadra/' + ${presidente.id} + '/' + ${squadra.id}}"
+					th:text="${presidente.nome} + ' ' + ${presidente.cognome} + '('+ ${presidente.dataDiNascita} +')'">Aurelio
+					De Laurentiis (1950)</a>
+			</li>
+		</ul>
 
+	</div>
 
 </body>
 

@@ -24,20 +24,17 @@
         </div>
     </nav>
 
-    <h1 class="main-title">Squadra modificata</h1>
+    <h1 class="main-title">Squadra</h1>
 
-    <div th:if="${squadra}">
+    <div th:if="${squadra}" class="generic-container">
 
         <h2 th:text="${squadra.nome}">Napoli</h2>
-        <a th:if="${squadra.presidente}" th:text="'Presidente: ' + ${squadra.presidente.nome} + ' ' +${squadra.presidente.cognome}" th:href="@{'/presidenti' + '/' + ${squadra.presidente.id}}" class="presidente">Presidente: Aurelio De Laurentiis</a>
+        <a th:if="${squadra.presidente}" th:text="'Presidente: ' + ${squadra.presidente.nome} + ' ' +${squadra.presidente.cognome}" th:href="@{'/admin/presidente' + '/' + ${squadra.presidente.id}}" class="presidente">Presidente: Aurelio De Laurentiis</a>
+        <p th:unless="${squadra.presidente}"> Nessun presidente assegnato </p>
         <p th:text="'Anno Fondazione: ' + ${squadra.annoFondazione}" class="anno-fondazione">Anno Fondazione: 1926</p>
-        <img th:src="@{'/logos/' + ${squadra.nome} +'.png'}" class="immagine-squadra"/>
-        <a th:href="@{'/squadre' + '/' + ${squadra.id}}"> Elenco calciatori </a>
-        <!-- Aggiungi ulteriori dettagli della squadra a tuo piacimento -->
+        <p th:text="'Sede: ' + ${squadra.indirizzoSede}" >Sede: Via qualcosa</p>
     </div>
     <div th:unless="${squadra}">Non esiste la squadra</div>
-
-    <!-- Puoi usare Thymeleaf per ciclare attraverso le squadre qui -->
 
 </body>
 </html>

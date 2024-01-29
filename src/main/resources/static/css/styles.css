@@ -12635,6 +12635,10 @@ fieldset:disabled .btn {
 	padding: 20px;
 }
 
+.generic-container{
+	padding: 20px;
+}
+
 .presidente {
 	font-weight: bold;
 }
