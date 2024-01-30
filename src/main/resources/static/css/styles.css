@@ -8769,6 +8769,7 @@ fieldset:disabled .btn {
 .py-5 {
 	padding-top: 3rem !important;
 	padding-bottom: 3rem !important;
+	margin-top: 3rem;
 }
 
 .pt-0 {
@@ -12816,4 +12817,12 @@ td {
 
 .griglia-giocatori tr:nth-child(even) {
 	background-color: var(--bs-gray-300);
+}
+
+footer{
+	padding: 20px;
+	position: relative;
+    bottom: 0;
+    width: 100%;
+	
 }
