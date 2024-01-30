@@ -1,10 +1,13 @@
 package it.uniroma3.siw.controller.validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 
 import it.uniroma3.siw.model.Giocatore;
 import it.uniroma3.siw.repository.GiocatoreRepository;
+
+@Component
 public class GiocatoreValidator implements org.springframework.validation.Validator {
 
 	@Autowired

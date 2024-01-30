@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.siw.controller.validator.GiocatoreValidator;
 import it.uniroma3.siw.model.Credenziali;
 import it.uniroma3.siw.model.Giocatore;
 import it.uniroma3.siw.model.Presidente;
@@ -28,6 +29,8 @@ public class GiocatoreController {
 	CredenzialiService credenzialiService;
 	@Autowired
 	PresidenteRepository presidenteRepository;
+	@Autowired
+	GiocatoreValidator giocatoreValidator;
 
 	@GetMapping("/admin/formAggiungiGiocatore")
 	public String formAggiungiGiocatore(Model model) {
@@ -70,6 +73,7 @@ public class GiocatoreController {
 	@PostMapping("/presidente/aggiungiGiocatore")
 	public String aggiungiGiocatorePresidente(@Valid @ModelAttribute("giocatore") Giocatore giocatore,
 			BindingResult bindingResult, Model model) {
+		this.giocatoreValidator.validate(giocatore, bindingResult);
 		if (!bindingResult.hasErrors()) {
 			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
 					.getPrincipal();
