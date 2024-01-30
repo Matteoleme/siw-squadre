@@ -56,6 +56,18 @@
 				th:style="'color:red'"></span>
 		</div>
 		<div class="form-aggiungi-campo">
+			<label>Inizio tesseramento:</label>
+			<input type="date" th:field="${giocatore.inizioTesseramento}">
+			<span th:if="${#fields.hasErrors('inizioTesseramento')}" th:errors="${giocatore.inizioTesseramento}"
+				th:style="'color:red'"></span>
+		<!--</div>
+		<div class="form-aggiungi-campo">-->
+			<label>Fine tesseramento:</label>
+			<input type="date" th:field="${giocatore.fineTesseramento}">
+			<span th:if="${#fields.hasErrors('fineTesseramento')}" th:errors="${giocatore.fineTesseramento}"
+				th:style="'color:red'"></span>
+		</div>
+		<div class="form-aggiungi-campo">
 			<label for="ruolo">Ruolo:</label>
 			<select th:field="${giocatore.ruolo}" required>
 				<option value="portiere">Portiere</option>

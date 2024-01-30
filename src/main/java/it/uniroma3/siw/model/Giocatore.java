@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
 
@@ -26,6 +27,11 @@ public class Giocatore {
 	private String ruolo;
 	@Past
 	private LocalDate dataDiNascita;
+	
+	private LocalDate inizioTesseramento;
+	@Future
+	private LocalDate fineTesseramento;
+	
 	
 	@ManyToOne
 	private Squadra squadra;
@@ -84,6 +90,22 @@ public class Giocatore {
 
 	public void setSquadra(Squadra squadra) {
 		this.squadra = squadra;
+	}
+
+	public LocalDate getInizioTesseramento() {
+		return inizioTesseramento;
+	}
+
+	public void setInizioTesseramento(LocalDate inizioTesseramento) {
+		this.inizioTesseramento = inizioTesseramento;
+	}
+
+	public LocalDate getFineTesseramento() {
+		return fineTesseramento;
+	}
+
+	public void setFineTesseramento(LocalDate fineTesseramento) {
+		this.fineTesseramento = fineTesseramento;
 	}
 
 	@Override

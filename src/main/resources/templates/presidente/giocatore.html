@@ -38,8 +38,9 @@
 				<h3>
 					Squadra
 				</h3>
-				<p th:if="${giocatore.squadra}"> <a th:text="${giocatore.squadra.nome}"
-						th:href="@{'/squadre' + '/' + ${giocatore.squadra.id}}"> Roma </a></p>
+				<p th:if="${giocatore.squadra}"> <a th:text="${giocatore.squadra.nome}"> Roma </a>
+				<p th:text="${giocatore.inizioTesseramento} + ' - ' + ${giocatore.fineTesseramento}"> </p>
+				</p>
 				<p th:unless="${giocatore.squadra}" th:text="'Squadra ancora non assegnata'"></p>
 			</div>
 			<div class="giocatore-info-column">
