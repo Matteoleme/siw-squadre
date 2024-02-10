@@ -89,7 +89,7 @@ public class GiocatoreController {
 			return "presidente/giocatore.html";
 		} else {
 			model.addAttribute("messaggioErrore", "Questo giocatore esiste già");
-			model.addAttribute("giocatore", new Giocatore());
+//			model.addAttribute("giocatore", new Giocatore());
 			return "presidente/formAggiungiGiocatore.html";
 		}
 	}
@@ -118,6 +118,20 @@ public class GiocatoreController {
 		nuovoGiocatore.setSquadra(squadra);
 		this.giocatoreRepository.save(nuovoGiocatore);
 		// ora passo tutti i giocatori della squadra del presidente
+		model.addAttribute("message", "Giocatori della sua squadra");
+		model.addAttribute("giocatori", this.giocatoreRepository.findBySquadra(squadra));
+		return "presidente/giocatori.html";
+	}
+	
+	@GetMapping("/presidente/mostraSquadra")
+	public String mostraSquadraPresidente(Model model) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credenziali credenziali = credenzialiService.getCredenziali(userDetails.getUsername());
+		
+		Presidente presidente = this.presidenteRepository.findByNomeAndCognome(credenziali.getUtente().getNome(),
+				credenziali.getUtente().getCognome());
+		Squadra squadra = presidente.getSquadra();
+		
 		model.addAttribute("message", "Giocatori della sua squadra");
 		model.addAttribute("giocatori", this.giocatoreRepository.findBySquadra(squadra));
 		return "presidente/giocatori.html";

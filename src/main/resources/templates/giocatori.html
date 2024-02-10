@@ -30,28 +30,32 @@
 	</nav>
 
 
-	<div th:if="${giocatori.isEmpty()}">Non ci sono giocatori della squadra</div>
 
 	<h1 class="main-title">Giocatori </h1>
-	<table class="griglia-giocatori">
-		<tr class="table-header">
-			<th>Giocatore</th>
-			<th>Squadra</th>
-			<th>Ruolo</th>
-			<th>Data di nascita</th>
-			<th>Nazionalità</th>
-		</tr>
-		<div th:each="giocatore : ${giocatori}">
-			<tr class="giocatore">
-				<th th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}">Francesco Totti </th>
-				<th th:if="${giocatore.squadra}" th:text="${giocatore.squadra.nome}">Roma</th>
-				<th th:unless="${giocatore.squadra}" th:text="'Nessuna squadra assegnata'"></th>
-				<th th:text="${giocatore.ruolo}">Attaccante</th>
-				<th th:text="${giocatore.dataDiNascita}">01-02-1990</th>
-				<th th:text="${giocatore.nazionalita}">Italiana</th>
+	<div th:if="${giocatori.isEmpty()}">Non ci sono giocatori della squadra</div>
+	<div th:unless="${giocatori.isEmpty()}">
+
+
+		<table class="griglia-giocatori">
+			<tr class="table-header">
+				<th>Giocatore</th>
+				<th>Squadra</th>
+				<th>Ruolo</th>
+				<th>Data di nascita</th>
+				<th>Nazionalità</th>
 			</tr>
-		</div>
-	</table>
+			<div th:each="giocatore : ${giocatori}">
+				<tr class="giocatore">
+					<th th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}">Francesco Totti </th>
+					<th th:if="${giocatore.squadra}" th:text="${giocatore.squadra.nome}">Roma</th>
+					<th th:unless="${giocatore.squadra}" th:text="'Nessuna squadra assegnata'"></th>
+					<th th:text="${giocatore.ruolo}">Attaccante</th>
+					<th th:text="${giocatore.dataDiNascita}">01-02-1990</th>
+					<th th:text="${giocatore.nazionalita}">Italiana</th>
+				</tr>
+			</div>
+		</table>
+	</div>
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container px-4 px-lg-5">
